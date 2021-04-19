@@ -5,16 +5,21 @@ const refs = {
   cardContainer: document.querySelector('.js-card-container'),
 };
 
-fetch('https://restcountries.eu/rest/v2/name/Ukraine')
-  .then(response => {
-    return response.json();
-  })
-  .then(country => {
-    console.log(country);
-    const markup = countryCardTpl(...country);
-    console.log(markup);
-    refs.cardContainer.innerHTML = markup;
-  })
+fetchCountryByName()
+  .then(renderCountryCard)
   .catch(error => {
     console.log(error);
   });
+
+function fetchCountryByName() {
+  return fetch(`https://restcountries.eu/rest/v2/name/Ukraine`).then(
+    response => {
+      return response.json();
+    },
+  );
+}
+
+function renderCountryCard(country) {
+  const markup = countryCardTpl(...country);
+  refs.cardContainer.innerHTML = markup;
+}
