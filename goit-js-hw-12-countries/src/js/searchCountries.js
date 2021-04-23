@@ -11,7 +11,7 @@ const refs = {
   cardContainer: document.querySelector('.js-card-container'),
 };
 
-refs.searchInput.addEventListener('input', debounce(onSearch, 1000));
+refs.searchInput.addEventListener('input', debounce(onSearch, 500));
 
 let catalogeCountries = '';
 
